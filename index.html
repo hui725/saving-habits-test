@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>你到底有多会花钱？｜搞怪消费人格鉴定</title>
+  <style>
+    :root{--ink:#211b35;--yellow:#ffd84d;--pink:#ff6f91;--purple:#6f42e8;--mint:#b9f3d0;--paper:#fffdf5;--line:#211b35}
+    *{box-sizing:border-box} body{margin:0;color:var(--ink);font-family:"Microsoft YaHei",system-ui,sans-serif;background:#fff3c8;min-height:100vh;overflow-x:hidden}
+    body:before,body:after{content:"";position:fixed;z-index:-1;border-radius:50%;filter:blur(2px);opacity:.6}
+    body:before{width:260px;height:260px;background:#ff9eb3;left:-100px;top:80px} body:after{width:300px;height:300px;background:#a5e7ff;right:-130px;bottom:40px}
+    .wrap{max-width:720px;margin:auto;padding:18px 16px 48px}.topbar{display:flex;justify-content:space-between;align-items:center;margin-bottom:18px}
+    .brand{font-weight:900;letter-spacing:.04em}.stamp{background:var(--purple);color:#fff;padding:8px 12px;border:3px solid var(--line);border-radius:12px;box-shadow:4px 4px 0 var(--line);font-size:12px;transform:rotate(3deg)}
+    .screen{display:none}.screen.active{display:block}.hero{position:relative;background:var(--paper);border:4px solid var(--line);border-radius:28px;padding:30px 24px 26px;box-shadow:8px 8px 0 var(--line);overflow:hidden}
+    .hero:after{content:"￥";position:absolute;right:15px;top:-28px;font-size:170px;font-weight:900;color:#ffe9a1;transform:rotate(18deg);z-index:0}.hero>*{position:relative;z-index:1}
+    .kicker{display:inline-block;background:var(--pink);padding:7px 12px;border:3px solid var(--line);border-radius:20px;font-weight:900;transform:rotate(-3deg);font-size:13px}.hero h1{font-size:clamp(34px,8vw,58px);line-height:1.02;margin:22px 0 12px;letter-spacing:-.06em}.hero h1 em{font-style:normal;color:var(--purple);text-decoration:underline;text-decoration-thickness:6px;text-decoration-color:var(--yellow)}.hero p{font-size:17px;line-height:1.75;margin:0 0 20px;max-width:560px}
+    .doodle{display:flex;gap:10px;flex-wrap:wrap;margin:18px 0 22px}.doodle span{padding:10px 12px;background:#e2f8e9;border:3px solid var(--line);border-radius:14px;font-weight:800;transform:rotate(-2deg)}.doodle span:nth-child(2){background:#e7dfff;transform:rotate(3deg)}.doodle span:nth-child(3){background:#ffd9df;transform:rotate(-1deg)}
+    .btn{border:3px solid var(--line);background:var(--yellow);color:var(--ink);border-radius:15px;padding:14px 20px;font-size:17px;font-weight:900;cursor:pointer;box-shadow:4px 4px 0 var(--line);transition:.15s;display:inline-flex;align-items:center;justify-content:center}.btn:hover{transform:translate(-2px,-2px);box-shadow:6px 6px 0 var(--line)}.btn.secondary{background:#fff}.btn.purple{background:var(--purple);color:#fff}.fine{font-size:12px;opacity:.68;margin-top:16px}
+    .quiz-head{margin-bottom:16px}.progress-line{height:13px;background:#fff;border:3px solid var(--line);border-radius:20px;overflow:hidden;box-shadow:3px 3px 0 var(--line)}.progress-fill{height:100%;background:var(--pink);width:0;transition:.25s}.counter{display:flex;justify-content:space-between;align-items:center;font-size:13px;font-weight:900;margin-bottom:10px}.money{font-size:24px;letter-spacing:3px}
+    .question-card{background:var(--paper);border:4px solid var(--line);border-radius:24px;padding:25px 20px 20px;box-shadow:7px 7px 0 var(--line)}.tag{display:inline-block;background:var(--mint);border:3px solid var(--line);border-radius:12px;padding:5px 10px;font-size:12px;font-weight:900;transform:rotate(-2deg)}.question-card h2{font-size:clamp(23px,5vw,32px);line-height:1.35;margin:18px 0 22px}.options{display:grid;gap:12px}.option{width:100%;text-align:left;background:#fff;border:3px solid var(--line);border-radius:16px;padding:15px 14px;font-size:16px;line-height:1.55;cursor:pointer;box-shadow:3px 3px 0 #d6cce9;transition:.15s}.option:hover{transform:translateX(3px);background:#fff6c5}.option b{display:inline-flex;width:27px;height:27px;align-items:center;justify-content:center;background:var(--purple);color:#fff;border-radius:50%;margin-right:8px;font-size:13px}.quiz-note{font-size:12px;opacity:.7;margin:16px 2px 0}
+    .result-card{background:var(--paper);border:4px solid var(--line);border-radius:28px;padding:25px 20px;box-shadow:8px 8px 0 var(--line)}.result-top{text-align:center;border-bottom:3px dashed var(--line);padding-bottom:20px}.result-top .emoji{font-size:62px;display:block;filter:drop-shadow(3px 3px 0 var(--yellow))}.result-top h2{font-size:clamp(31px,7vw,46px);margin:8px 0 5px;line-height:1.08}.result-top .label{display:inline-block;background:var(--yellow);border:3px solid var(--line);border-radius:999px;padding:6px 12px;font-weight:900;transform:rotate(-2deg)}.roast{font-size:18px;line-height:1.7;margin:20px 0;text-align:center;font-weight:800}.report-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin:16px 0}.report-box{border:3px solid var(--line);border-radius:16px;padding:13px;background:#f3edff}.report-box:nth-child(2){background:#e9fff1}.report-box:nth-child(3){background:#fff0f3}.report-box:nth-child(4){background:#fff7cf}.report-box b{display:block;font-size:12px;margin-bottom:7px;opacity:.7}.report-box strong{font-size:22px}.quote{background:#211b35;color:#fff;padding:17px;border-radius:16px;font-size:16px;line-height:1.65;margin-top:16px}.advice{border:3px solid var(--line);border-radius:16px;padding:15px;margin-top:14px;background:#fff}.advice h3{margin:0 0 8px;font-size:16px}.advice p{margin:0;line-height:1.65}.actions{display:flex;gap:12px;flex-wrap:wrap;margin-top:20px}.actions .btn{flex:1;min-width:140px}.share{margin-top:16px;text-align:center;font-size:13px;opacity:.75}.tiny{font-size:12px;line-height:1.6;opacity:.65;text-align:center;margin-top:18px}
+    @media(max-width:520px){.wrap{padding:14px 12px 36px}.hero{padding:25px 18px 22px}.question-card{padding:21px 15px 16px}.report-grid{grid-template-columns:1fr}.topbar{margin-bottom:12px}.hero h1{font-size:42px}.doodle span{font-size:13px}}
+  </style>
+</head>
+<body>
+  <main class="wrap">
+    <div class="topbar"><div class="brand">🕵️‍♀️ 钱包鉴定科</div><div class="stamp">纯娱乐 · 不上价值</div></div>
+
+    <section id="home" class="screen active">
+      <div class="hero">
+        <span class="kicker">消费人格鉴定 · 搞怪版</span>
+        <h1>你到底有多会<br><em>花钱？</em></h1>
+        <p>36个生活现场，鉴定你是省钱特工、旧物守护者，还是“嘴上说不买，手已经付款”的神秘物种。</p>
+        <div class="doodle"><span>🍚 不查账本</span><span>🛒 不会骂你</span><span>🧺 可能有点像</span></div>
+        <button class="btn purple" onclick="startQuiz()">开始鉴定 →</button>
+        <div class="fine">预计用时3分钟｜结果仅供娱乐，钱包本人不承担法律责任</div>
+      </div>
+    </section>
+
+    <section id="quiz" class="screen">
+      <div class="quiz-head"><div class="counter"><span id="counter">第1题 / 共24题</span><span class="money">💸 💸 💸</span></div><div class="progress-line"><div id="progress" class="progress-fill"></div></div></div>
+      <div class="question-card"><span id="qtag" class="tag">消费现场</span><h2 id="question"></h2><div id="options" class="options"></div><div class="quiz-note">凭第一反应选就好，犹豫太久会被钱包监控。</div></div>
+    </section>
+
+    <section id="result" class="screen"><div class="result-card"><div class="result-top"><span id="resultEmoji" class="emoji">🕵️‍♀️</span><span class="label">你的消费人格是</span><h2 id="resultTitle"></h2><div id="resultBadge" class="label"></div></div><p id="roast" class="roast"></p><div class="report-grid"><div class="report-box"><b>消费口头禅</b><strong id="catchphrase"></strong></div><div class="report-box"><b>钱包状态</b><strong id="wallet"></strong></div><div class="report-box"><b>最容易发生的事</b><strong id="scene"></strong></div><div class="report-box"><b>隐藏称号</b><strong id="hidden"></strong></div></div><div class="quote" id="quote"></div><div class="advice"><h3>🧪 钱包鉴定科友情提醒</h3><p id="advice"></p></div><div class="actions"><button class="btn" onclick="restart()">再测一次</button><button class="btn secondary" onclick="copyResult()">复制我的鉴定</button></div><div class="share">发给那个看到“打折”就失去理智的人看看 →</div><div class="tiny">本测试为趣味内容，不代表真实财务能力，也不构成任何专业建议。</div></div></section>
+  </main>
+<script>
+const types={
+  agent:{title:'省钱特工',emoji:'🕵️‍♀️',badge:'省钱雷达满格',catchphrase:'能省一点就不多花',wallet:'稳中带赢',scene:'结账前还要再算一遍单价',hidden:'满减战术指挥官',roast:'你的钱包不是没有情绪，只是被你训练得非常有纪律。别人逛街看商品，你逛街看价格、耐用度和有没有替代方案。',quote:'“这不是抠，这是对资源的尊重。”——你本人，结账前第12次确认到底值不值。',advice:'继续保持你的侦查能力，但偶尔也允许自己买一件“不打折但真的喜欢”的东西。特工也需要休假。'},
+  hoarder:{title:'低价囤货王',emoji:'📦',badge:'未来可能用到协会会长',catchphrase:'这么便宜不买会亏',wallet:'东西越来越多，钱越来越少',scene:'家里出现三个没拆封的同款',hidden:'折扣区永久居民',roast:'你不是乱买，你是在替未来的自己提前做好物资保障。只不过未来的自己好像一直没有出现。',quote:'“现在不用没关系，以后一定用得上。”——这句话已经在你家住下了。',advice:'下次看到低价好物，先问一句：原价我会买吗？如果不会，恭喜你，刚刚成功省下了一笔。'},
+  joy:{title:'快乐消费派',emoji:'🍰',badge:'及时行乐体验官',catchphrase:'人生已经够辛苦了',wallet:'快乐过，月底再说',scene:'付款时很爽，月底看账单很安静',hidden:'情绪价值采购经理',roast:'你花钱的速度，通常比后悔的速度快一点点。对你来说，买到喜欢的东西不是消费，是给今天发奖金。',quote:'“钱花了可以再赚，快乐错过就没有了。”——你说完这句，购物车又多了三件。',advice:'继续享受生活，但可以给快乐设一个小预算。这样月底看账单时，快乐不会突然变成悬疑片。'},
+  detail:{title:'精致抠细节',emoji:'🧮',badge:'小数点守护者',catchphrase:'配送费能不能免',wallet:'大钱敢花，小钱必算',scene:'为了省3元研究20分钟',hidden:'零元配送谈判代表',roast:'你可以订很贵的酒店，但绝不接受一笔不明不白的配送费。你的消费观很有原则：贵可以，亏不行。',quote:'“我不是在计较，我只是在维护这3块钱的尊严。”',advice:'算账是能力，但时间也是成本。下次可以给自己设一个“超过5分钟不再比价”的规则。'},
+  survivor:{title:'月底求生专家',emoji:'🏕️',badge:'余额预警幸存者',catchphrase:'这个月先这样',wallet:'月底进入低功耗模式',scene:'20号开始研究冰箱库存',hidden:'剩菜再创作艺术家',roast:'你拥有一种神奇能力：月初像投资人，月末像考古学家。你的钱包每个月都在经历一部小型灾难片。',quote:'“不是我不想吃，是我家还有半袋米。”——月底的你，语气坚定。',advice:'发工资当天先留出固定生活费和储蓄，剩下的钱再自由发挥。让月底的你少一点剧情。'},
+  cart:{title:'购物车考古学家',emoji:'🛒',badge:'收藏夹考古专家',catchphrase:'先放购物车看看',wallet:'钱暂时没花，但心已经花了',scene:'购物车里有47件，实际买了2件',hidden:'延迟付款文学家',roast:'你的购物车不是购物车，是一个记录人生欲望的数字博物馆。很多东西进去以后，就再也没有出来。',quote:'“我只是先收藏，不代表我会买。”——收藏夹：我信你个鬼。',advice:'每周给购物车做一次考古，超过30天没买的东西就放生。它们已经完成了陪伴使命。'}
+};
+const qs=[
+  ['上班日的午饭，你现在更接近哪种情况？','① 吃喝与外卖',[['提前做好带去公司，省钱又合口味','survivor'],['看当天时间，忙起来还是会点外卖','joy'],['自己带饭，还会把每周菜单和成本算好','agent'],['和同事拼单，尽量把配送费摊薄','detail']]],
+  ['以前常喝二三十元的奶茶，现在你更可能：','① 吃喝与外卖',[['改喝9.9元、团购或平台优惠','agent'],['直接自己泡茶包或咖啡','survivor'],['想喝就喝，价格不是主要问题','joy'],['先算一杯能不能喝到几次快乐','detail']]],
+  ['你想吃饭但发现家里还有食材，会：','① 吃喝与外卖',[['先看冰箱，尽量用现有食材做一顿','survivor'],['把食材安排进接下来几天的菜单','agent'],['今天就想吃外卖，食材明天再说','joy'],['看看哪些快过期，优先处理它们','detail']]],
+  ['去超市买食品时，遇到打折商品，你通常会：','① 吃喝与外卖',[['只要平时会用，打折就先囤一点','hoarder'],['先比较单价和保质期，再决定要不要买','agent'],['不太看折扣，想吃什么就买什么','joy'],['只买原本计划里的，不被折扣带走','detail']]],
+  ['你发现某种食品快到保质期时，会：','① 吃喝与外卖',[['打折就买，回家马上安排进菜单','agent'],['只买当天能吃完的份量','detail'],['不太敢买，宁愿买新鲜的','joy'],['买回去分装或冷冻，尽量不浪费','survivor']]],
+  ['饭菜只剩最后一口时，你通常会：','① 吃喝与外卖',[['吃掉，不想让它变成浪费','survivor'],['实在吃不下就停，不勉强自己','detail'],['直接放下，身体舒服更重要','joy'],['先留着，过一会儿也许还能吃','hoarder']]],
+
+  ['手机看到“限时折扣”，但你原本只想买一件，你会：','② 购物与衣物',[['先比较价格和评价，再决定','agent'],['只要以后用得上，打折就先买','hoarder'],['喜欢就直接买，错过会难受','joy'],['只买原本计划里的，不被活动带走','detail']]],
+  ['看到闲置衣服，你通常会：','② 购物与衣物',[['拍照挂二手平台，能卖就卖掉','agent'],['改成家居服或捐给需要的人','survivor'],['先留着，万一哪天又想穿','hoarder'],['直接处理掉，衣柜清爽更重要','detail']]],
+  ['买衣服前，你会不会先看看衣柜里有没有类似款？','② 购物与衣物',[['会，避免买重复','agent'],['会，但看到特别喜欢的还是会买','joy'],['会，还会算它一年能穿几次','detail'],['不太会，衣服总有不同场合能穿','hoarder']]],
+  ['一件衣服起球或掉线头时，你通常会：','② 购物与衣物',[['拿出工具修一修，继续穿','survivor'],['看修理成本，算清楚再决定','detail'],['影响心情就换新的','joy'],['先放着，哪天想起再修','cart']]],
+  ['买一件贵一点但能用很多年的东西，你会：','② 购物与衣物',[['先算每年的使用成本','agent'],['只要耐用，贵一点也值得','detail'],['喜欢就买，耐不耐用以后再说','joy'],['先找二手或旧款，能用就行','survivor']]],
+  ['你在二手平台看到一件很喜欢的东西，会：','② 购物与衣物',[['先看成色、价格和卖家评价','detail'],['喜欢就买，便宜一点更开心','joy'],['先收藏，过几天还想要再下单','cart'],['先想想家里有没有类似的','agent']]],
+
+  ['家里的水瓶、纸箱和废纸，你现在更可能：','③ 旧物与再利用',[['分类攒起来，定期拿去卖或回收','survivor'],['只留有明确用途的，其他及时处理','detail'],['用完就扔，不想占地方','joy'],['先堆在阳台，等多了再一起处理','hoarder']]],
+  ['家里收集的塑料袋，你会：','③ 旧物与再利用',[['叠好留着装垃圾或带东西','survivor'],['只留一个小袋子，太多就处理掉','detail'],['用完就扔，不想让家里像仓库','joy'],['越攒越多，还会专门找地方放','hoarder']]],
+  ['你会把外卖餐具或包装留下来吗？','③ 旧物与再利用',[['会，之后带去野餐或装小东西','survivor'],['只留干净、结实、近期用得上的','detail'],['用完就扔，家里不想开餐具店','joy'],['先收进抽屉，抽屉已经快关不上了','hoarder']]],
+  ['一个小家电坏了，你通常会：','③ 旧物与再利用',[['先查教程，能修就不换','survivor'],['算维修费和新买的差价','detail'],['直接买新的，省时间','joy'],['先收起来，等哪天有空再研究','hoarder']]],
+  ['旧毛巾或旧床单，你最可能拿来：','③ 旧物与再利用',[['剪成抹布，开启第二职业','agent'],['看材质和干净程度，合适才留','detail'],['直接换新的，柔软度很重要','joy'],['先留着，家里总有一天会需要','hoarder']]],
+  ['你整理抽屉时发现一堆暂时用不到的小东西，会：','③ 旧物与再利用',[['挂二手平台或送给需要的人','agent'],['留下真正有明确用途的','detail'],['全部处理掉，空出来更舒服','joy'],['继续收好，相信未来会用上','hoarder']]],
+
+  ['周末准备洗车时，你更可能选择：','④ 出行与居家',[['自己去自助洗车，省钱又顺便活动','survivor'],['找附近便宜又方便的洗车店','detail'],['直接去常去的店，不想折腾','joy'],['车不太脏，先拖到下次再说','cart']]],
+  ['如果长期算下来更省油费，你会考虑把油车换成电车吗？','④ 出行与居家',[['会，先算购车差价、充电和保养成本','agent'],['会，但要先确认续航和充电是否方便','detail'],['不会，油车开着顺手最重要','joy'],['暂时不换，旧车还能开就继续开','survivor']]],
+  ['现在出门，你比以前少开车的原因更接近：','④ 出行与居家',[['能走路、坐公交就不额外花油费','survivor'],['提前规划路线，把几件事一次办完','agent'],['主要是停车太麻烦、太贵','detail'],['今天想舒服一点，还是会开车','joy']]],
+  ['你打车还是坐公交，通常取决于：','④ 出行与居家',[['先看时间和价格，算出最优解','agent'],['今天累不累，舒服更重要','joy'],['只要不迟到，能省就省','survivor'],['距离太近就走路，顺便运动','detail']]],
+  ['洗脸或刷牙时，水龙头通常是：','④ 出行与居家',[['随手关上，水不能白流','agent'],['看情况，赶时间时容易忘','joy'],['一直开着，但其他地方会省回来','cart'],['关得很认真，还会提醒家人','detail']]],
+  ['离开房间时，你会不会关灯和电器？','④ 出行与居家',[['会，最后一盏灯也不能浪费','agent'],['大多数时候会，偶尔忘记','cart'],['看心情，回来还要继续用','joy'],['会关，还会顺手检查插座','detail']]],
+
+  ['你开始记账以后，最明显的变化是：','⑤ 金钱规划',[['知道钱到底花在哪里了','agent'],['发现小额消费加起来很惊人','detail'],['记几天就嫌麻烦，偶尔才想起来','cart'],['每花一笔都像给钱包写工作报告','survivor']]],
+  ['平台发来红包、积分或返现提醒，你会：','⑤ 金钱规划',[['研究规则，能用就用掉','agent'],['只用真正需要的商品，不为了返现凑单','detail'],['看到喜欢的就顺手买了','joy'],['先收下，最后经常忘记使用','cart']]],
+  ['看到手机里的小额连续扣款，你通常会：','⑤ 金钱规划',[['马上检查并取消不用的服务','agent'],['先算一年总共要花多少钱','detail'],['金额不大，懒得处理','joy'],['先留着，万一以后又用到','hoarder']]],
+  ['月底发现这个月花超了，你更可能：','⑤ 金钱规划',[['复盘是哪几类支出超了，下月调整','agent'],['接下来减少外卖和非必要消费','survivor'],['算了，已经花了，开心过就好','joy'],['先不看账单，等发工资再说','cart']]],
+  ['你会为了省一点钱，专门绕远路去买东西吗？','⑤ 金钱规划',[['会，顺路还能多办几件事','agent'],['偶尔会，但不会让自己太累','detail'],['不会，时间也很贵','joy'],['看当天余额和心情决定','survivor']]],
+  ['你觉得哪种花钱最容易“悄悄变多”？','⑤ 金钱规划',[['每天一杯饮料、零食和小额外卖','detail'],['平台上顺手加购的小东西','agent'],['聚会、旅行和临时起意的消费','joy'],['家里囤下来的各种便宜货','hoarder']]],
+
+  ['你会主动找兼职或增加一份收入吗？','⑥ 收入与生活选择',[['会，收入来源多一点更安心','agent'],['看时间和回报，合适才做','detail'],['暂时不想，休息和生活也很重要','joy'],['先收藏机会，等有空再研究','cart']]],
+  ['你看到一个兼职机会时，第一反应是：','⑥ 收入与生活选择',[['先看真实收入、时间成本和风险','detail'],['只要不影响主业，就想试试看','agent'],['听起来太累，先算了','joy'],['先保存下来，过几天再决定','cart']]],
+  ['现在参加聚会比以前少，最接近的原因是：','⑥ 收入与生活选择',[['想把钱和时间留给更重要的事情','agent'],['出去吃饭的成本越来越高','detail'],['更喜欢在家休息或自己安排','survivor'],['朋友一叫还是会去，开心比较重要','joy']]],
+  ['朋友约你外出吃饭，你会先做什么？','⑥ 收入与生活选择',[['先看看人均和有没有合适的套餐','detail'],['问清楚预算，避免临时超支','agent'],['只要大家开心，吃什么都可以','joy'],['如果最近花得多，就委婉推到下次','survivor']]],
+  ['如果突然多了一笔钱，你更可能：','⑥ 收入与生活选择',[['先存一部分，再安排必要支出','agent'],['买一个真正能长期使用的东西','detail'],['奖励自己一顿好的或一次旅行','joy'],['先放着，等以后有明确用途','survivor']]],
+  ['你觉得真正的“会过日子”更接近：','⑥ 收入与生活选择',[['少花冤枉钱，也想办法增加收入','agent'],['把已有的东西用好、用久、用到值回票价','survivor'],['该省时省，该享受时也不委屈自己','detail'],['不被便宜牵着走，每一笔钱都花得明白','agent']]]
+];
+let index=0,score={agent:0,hoarder:0,joy:0,detail:0,survivor:0,cart:0};
+function show(id){document.querySelectorAll('.screen').forEach(x=>x.classList.remove('active'));document.getElementById(id).classList.add('active');window.scrollTo({top:0,behavior:'smooth'})}
+function startQuiz(){index=0;score={agent:0,hoarder:0,joy:0,detail:0,survivor:0,cart:0};show('quiz');renderQ()}
+function renderQ(){const q=qs[index];document.getElementById('counter').textContent=`第${index+1}题 / 共${qs.length}题`;document.getElementById('progress').style.width=`${(index/qs.length)*100}%`;document.getElementById('qtag').textContent=q[1];document.getElementById('question').textContent=q[0];const box=document.getElementById('options');box.innerHTML='';q[2].forEach((o,i)=>{const b=document.createElement('button');b.className='option';b.innerHTML=`<b>${String.fromCharCode(65+i)}</b>${o[0]}`;b.onclick=()=>answer(o[1]);box.appendChild(b)})}
+function answer(type){score[type]++;if(index<qs.length-1){index++;renderQ()}else showResult()}
+function showResult(){const key=Object.keys(score).sort((a,b)=>score[b]-score[a])[0],r=types[key];document.getElementById('progress').style.width='100%';['resultEmoji','resultTitle','resultBadge','roast','catchphrase','wallet','scene','hidden','quote','advice'].forEach(id=>{const map={resultEmoji:r.emoji,resultTitle:r.title,resultBadge:r.badge,roast:r.roast,catchphrase:r.catchphrase,wallet:r.wallet,scene:r.scene,hidden:r.hidden,quote:r.quote,advice:r.advice};document.getElementById(id).textContent=map[id]});show('result')}
+function restart(){startQuiz()}
+function copyResult(){const title=document.getElementById('resultTitle').textContent;const badge=document.getElementById('resultBadge').textContent;const text=`我的消费人格是：${title}\n隐藏称号：${badge}\n快来测测你是哪一种！`;navigator.clipboard?.writeText(text).then(()=>alert('鉴定结果已复制，发给朋友一起笑一下吧！')).catch(()=>alert(text))}
+</script>
+</body></html>
